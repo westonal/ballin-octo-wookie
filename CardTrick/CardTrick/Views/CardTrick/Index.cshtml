@@ -1,0 +1,38 @@
+﻿@model dynamic
+
+@{
+    ViewBag.Title = "Cards";
+}
+
+<h2>@ViewBag.Title</h2>
+
+<div id="cards">
+    <img src="~/Content/classic-cards/1.png" />
+</div>
+
+<textarea id="typeHere"></textarea>
+
+<button id="btn1">Press</button>
+
+<script language="javascript">
+    function eval() {
+        document.getElementById("cards").innerHTML += "<img src=\"/Content/classic-cards/1.png\" />";
+    }
+
+    var uri = '../api/cardstoimages';
+    
+    function full_eval() {
+        //document.getElementById("cards").innerHTML += "<img src=\"/Content/classic-cards/2.png\" />";
+        $.getJSON(uri).done(function(data) {
+            $.each(data, function (key, item) {
+                $('<img>', { src: "/Content/classic-cards/" + item }).appendTo($('#cards'));
+            });
+        });
+    }
+
+    document.getElementById("btn1").onclick = eval;
+
+    document.getElementById("typeHere").onkeydown = full_eval;
+
+    //$("#typeHere").change(function() { full_eval(); });
+</script>

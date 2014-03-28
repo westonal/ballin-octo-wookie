@@ -51,6 +51,7 @@
   </Choose>
   <ItemGroup>
     <Compile Include="CardRingTests.cs" />
+    <Compile Include="CardTest.cs" />
     <Compile Include="CardTrickTest.cs" />
     <Compile Include="DeckTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

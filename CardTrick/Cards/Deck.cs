@@ -15,7 +15,7 @@ namespace Cards
             {
                 foreach (CardValue cardValue in Enum.GetValues(typeof (CardValue)))
                 {
-                    _cards.Add(new Card {CardValue = cardValue, Suit = suit});
+                    _cards.Add(new Card(suit, cardValue));
                 }
             }
         }

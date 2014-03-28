@@ -126,6 +126,8 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
+    <Compile Include="Controllers\CardsToImagesController.cs" />
+    <Compile Include="Controllers\CardTrickController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -135,6 +137,72 @@
   <ItemGroup>
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\classic-cards\1.png" />
+    <Content Include="Content\classic-cards\10.png" />
+    <Content Include="Content\classic-cards\11.png" />
+    <Content Include="Content\classic-cards\12.png" />
+    <Content Include="Content\classic-cards\13.png" />
+    <Content Include="Content\classic-cards\14.png" />
+    <Content Include="Content\classic-cards\15.png" />
+    <Content Include="Content\classic-cards\16.png" />
+    <Content Include="Content\classic-cards\17.png" />
+    <Content Include="Content\classic-cards\18.png" />
+    <Content Include="Content\classic-cards\19.png" />
+    <Content Include="Content\classic-cards\2.png" />
+    <Content Include="Content\classic-cards\20.png" />
+    <Content Include="Content\classic-cards\21.png" />
+    <Content Include="Content\classic-cards\22.png" />
+    <Content Include="Content\classic-cards\23.png" />
+    <Content Include="Content\classic-cards\24.png" />
+    <Content Include="Content\classic-cards\25.png" />
+    <Content Include="Content\classic-cards\26.png" />
+    <Content Include="Content\classic-cards\27.png" />
+    <Content Include="Content\classic-cards\28.png" />
+    <Content Include="Content\classic-cards\29.png" />
+    <Content Include="Content\classic-cards\3.png" />
+    <Content Include="Content\classic-cards\30.png" />
+    <Content Include="Content\classic-cards\31.png" />
+    <Content Include="Content\classic-cards\32.png" />
+    <Content Include="Content\classic-cards\33.png" />
+    <Content Include="Content\classic-cards\34.png" />
+    <Content Include="Content\classic-cards\35.png" />
+    <Content Include="Content\classic-cards\36.png" />
+    <Content Include="Content\classic-cards\37.png" />
+    <Content Include="Content\classic-cards\38.png" />
+    <Content Include="Content\classic-cards\39.png" />
+    <Content Include="Content\classic-cards\4.png" />
+    <Content Include="Content\classic-cards\40.png" />
+    <Content Include="Content\classic-cards\41.png" />
+    <Content Include="Content\classic-cards\42.png" />
+    <Content Include="Content\classic-cards\43.png" />
+    <Content Include="Content\classic-cards\44.png" />
+    <Content Include="Content\classic-cards\45.png" />
+    <Content Include="Content\classic-cards\46.png" />
+    <Content Include="Content\classic-cards\47.png" />
+    <Content Include="Content\classic-cards\48.png" />
+    <Content Include="Content\classic-cards\49.png" />
+    <Content Include="Content\classic-cards\5.png" />
+    <Content Include="Content\classic-cards\50.png" />
+    <Content Include="Content\classic-cards\51.png" />
+    <Content Include="Content\classic-cards\52.png" />
+    <Content Include="Content\classic-cards\53.png" />
+    <Content Include="Content\classic-cards\54.png" />
+    <Content Include="Content\classic-cards\6.png" />
+    <Content Include="Content\classic-cards\7.png" />
+    <Content Include="Content\classic-cards\8.png" />
+    <Content Include="Content\classic-cards\9.png" />
+    <Content Include="Content\classic-cards\b1fh.png" />
+    <Content Include="Content\classic-cards\b1fv.png" />
+    <Content Include="Content\classic-cards\b1pb.png" />
+    <Content Include="Content\classic-cards\b1pl.png" />
+    <Content Include="Content\classic-cards\b1pr.png" />
+    <Content Include="Content\classic-cards\b1pt.png" />
+    <Content Include="Content\classic-cards\b2fh.png" />
+    <Content Include="Content\classic-cards\b2fv.png" />
+    <Content Include="Content\classic-cards\b2pb.png" />
+    <Content Include="Content\classic-cards\b2pl.png" />
+    <Content Include="Content\classic-cards\b2pr.png" />
+    <Content Include="Content\classic-cards\b2pt.png" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
@@ -163,6 +231,7 @@
     <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Scripts\jquery-1.10.2.min.map" />
+    <Content Include="Views\CardTrick\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -174,6 +243,12 @@
     <Content Include="fonts\glyphicons-halflings-regular.eot" />
     <Content Include="packages.config" />
     <None Include="Project_Readme.html" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Cards\Cards.csproj">
+      <Project>{7494b689-6034-4973-b99b-dcf36cb9afee}</Project>
+      <Name>Cards</Name>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
