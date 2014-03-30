@@ -45,10 +45,24 @@ namespace Cards
 
         public static Card FromString(string asString)
         {
+            asString = asString.ToUpperInvariant();
+
             var suit = FindSuit(asString);
             var value = FindValue(asString);
 
             return new Card(suit, value);
+        }
+
+        public static Card TryFromString(string asString)
+        {
+            try
+            {
+                return FromString(asString);
+            }
+            catch
+            {
+                return null;
+            }
         }
 
         private static CardValue FindValue(string asString)

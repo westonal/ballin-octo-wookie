@@ -97,5 +97,91 @@ namespace CardTrickTests
             _deck.Manipulate(new RiffleShuffle());
             Assert.AreEqual(52, _deck.Count());
         }
+
+        [TestMethod]
+        public void Can_create_deck_from_text()
+        {
+            var deck = Deck.Load("2h");
+            Assert.AreEqual(1, deck.Count());
+            Assert.AreEqual(new Card(Suit.Heart,CardValue.Two), deck.TakeCard());
+        }
+
+        [TestMethod]
+        public void Can_load_deck_with_two_cards_from_text()
+        {
+            var deck = Deck.Load("3D2h");
+            Assert.AreEqual(2, deck.Count());
+            Assert.AreEqual(new Card(Suit.Diamond, CardValue.Three), deck.TakeCard());
+            Assert.AreEqual(new Card(Suit.Heart, CardValue.Two), deck.TakeCard());
+        }
+
+        [TestMethod]
+        public void Can_load_deck_with_two_cards_from_text_with_a_space()
+        {
+            var deck = Deck.Load("3D 2h");
+            Assert.AreEqual(2, deck.Count());
+            Assert.AreEqual(new Card(Suit.Diamond, CardValue.Three), deck.TakeCard());
+            Assert.AreEqual(new Card(Suit.Heart, CardValue.Two), deck.TakeCard());
+        }
+
+        [TestMethod]
+        public void Can_load_deck_with_three_cards_from_text_with_spaces_and_commas()
+        {
+            var deck = Deck.Load("3D,2h, s6");
+            Assert.AreEqual(3, deck.Count());
+            Assert.AreEqual(new Card(Suit.Diamond, CardValue.Three), deck.TakeCard());
+            Assert.AreEqual(new Card(Suit.Heart, CardValue.Two), deck.TakeCard());
+            Assert.AreEqual(new Card(Suit.Spade, CardValue.Six), deck.TakeCard());
+        }
+
+        [TestMethod]
+        public void Can_load_deck_with_three_cards_but_repeating_one_doesnt_affect_order()
+        {
+            var deck = Deck.Load("3D, 2h, s6, 3d");
+            Assert.AreEqual(3, deck.Count());
+            Assert.AreEqual(new Card(Suit.Diamond, CardValue.Three), deck.TakeCard());
+            Assert.AreEqual(new Card(Suit.Heart, CardValue.Two), deck.TakeCard());
+            Assert.AreEqual(new Card(Suit.Spade, CardValue.Six), deck.TakeCard());
+        }
+
+        [TestMethod]
+        public void Can_load_deck_with_unknown_card()
+        {
+            var deck = Deck.Load("3D, 2h, 5x, 7c");
+            Assert.AreEqual(4, deck.Count());
+            Assert.AreEqual(new Card(Suit.Diamond, CardValue.Three), deck.TakeCard());
+            Assert.AreEqual(new Card(Suit.Heart, CardValue.Two), deck.TakeCard());
+            Assert.AreEqual(null, deck.TakeCard());
+            Assert.AreEqual(new Card(Suit.Club, CardValue.Seven), deck.TakeCard());
+        }
+
+        [TestMethod]
+        public void Can_load_deck_with_two_unknown_cards()
+        {
+            var deck = Deck.Load("3D, 2h, 5x, 7c, f7");
+            Assert.AreEqual(5, deck.Count());
+            Assert.AreEqual(new Card(Suit.Diamond, CardValue.Three), deck.TakeCard());
+            Assert.AreEqual(new Card(Suit.Heart, CardValue.Two), deck.TakeCard());
+            Assert.AreEqual(null, deck.TakeCard());
+            Assert.AreEqual(new Card(Suit.Club, CardValue.Seven), deck.TakeCard());
+            Assert.AreEqual(null, deck.TakeCard());
+        }
+
+        [TestMethod]
+        public void Can_load_deck_with_non_complete_card()
+        {
+            var deck = Deck.Load("KC5");
+            Assert.AreEqual(1, deck.Count());
+            Assert.AreEqual(new Card(Suit.Club, CardValue.King), deck.TakeCard());
+        }
+
+        [TestMethod]
+        public void Can_load_deck_with_a_tens_in_both_formats()
+        {
+            var deck = Deck.Load("TC10S");
+            Assert.AreEqual(2, deck.Count());
+            Assert.AreEqual(new Card(Suit.Club, CardValue.Ten), deck.TakeCard());
+            Assert.AreEqual(new Card(Suit.Spade, CardValue.Ten), deck.TakeCard());
+        }
     }
 }

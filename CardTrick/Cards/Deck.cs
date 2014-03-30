@@ -11,9 +11,9 @@ namespace Cards
 
         public Deck()
         {
-            foreach (Suit suit in Enum.GetValues(typeof (Suit)))
+            foreach (Suit suit in Enum.GetValues(typeof(Suit)))
             {
-                foreach (CardValue cardValue in Enum.GetValues(typeof (CardValue)))
+                foreach (CardValue cardValue in Enum.GetValues(typeof(CardValue)))
                 {
                     _cards.Add(new Card(suit, cardValue));
                 }
@@ -67,6 +67,30 @@ namespace Cards
         public bool IsEmpty()
         {
             return !_cards.Any();
+        }
+
+        public static Deck Load(string deckSerialized)
+        {
+            var deck = NewEmptyDeck();
+            deckSerialized = deckSerialized.Replace(" ", "").Replace(",", "").Replace("10", "T");
+            while (deckSerialized.Length > 1)
+            {
+                var cardText = new String(deckSerialized.Take(2).ToArray());
+                deckSerialized = deckSerialized.Substring(2);
+                var card = Card.TryFromString(cardText);
+                if (card == null || !deck.Contains(card))
+                {
+                    deck._cards.Add(card);
+                }
+            }
+            return deck;
+        }
+
+        private bool Contains(Card card)
+        {
+            foreach (var c in _cards)
+                if (Equals(card, c)) return true;
+            return false;
         }
     }
 }

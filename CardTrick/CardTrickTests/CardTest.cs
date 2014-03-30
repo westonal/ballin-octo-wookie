@@ -55,6 +55,13 @@ namespace CardTrickTests
         }
 
         [TestMethod]
+        public void Can_create_from_lower_case()
+        {
+            var expected = new Card(Suit.Heart, CardValue.Ace);
+            Assert.AreEqual(expected, Card.FromString("ha"));
+        }
+
+        [TestMethod]
         public void To_string()
         {
             Assert.AreEqual("2C", new Card(Suit.Club, CardValue.Two).ToString());
