@@ -25,29 +25,22 @@ namespace Cards
             while (!tempDeck.IsEmpty())
             {
                 var c = tempDeck.TakeCard();
-                var asExpected = false;
                 foreach (var pointer in _pointers)
                 {
                     if (pointer.IsExpected(c))
                     {
                         pointer.MoveOn();
-                        asExpected = true;
                     }
-                }
-                if (asExpected) continue;
-                foreach (var pointer in _pointers)
-                {
-                    if (pointer.IsExpected(c, 1))
+                    else
                     {
-                        return pointer.Expected();
+                        if (pointer.IsExpected(c, 1))
+                        {
+                            return pointer.Expected();
+                        }
                     }
                 }
-                if (_pointers.Count < 4)
-                {
-                    CreatePointer(c);
-                    continue;
-                }
-                return c;
+                CreatePointer(c);
+                continue;
             }
             return FirstPointerWithNoAdvances();
         }

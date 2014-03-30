@@ -118,7 +118,7 @@ namespace CardTrickTests
             Assert.AreEqual(card, trick.FindCard(deck));
             Assert.AreEqual(card, trick2.FindCard(deck2));
 
-            return new Model { ActualDeck = deck.Serialize() + deck2.Serialize(), DeckKnowledge = deck.Serialize() + model.DeckKnowledge };
+            return new Model { ActualDeck = deck.Serialize() + deck2.Serialize(), DeckKnowledge = model.DeckKnowledge };
         }
     }
 }
