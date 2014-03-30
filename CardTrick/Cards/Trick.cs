@@ -12,6 +12,13 @@ namespace Cards
             _deckRing = deckRing;
         }
 
+        public Trick(string deckString)
+        {
+            var deck = Deck.Load(deckString);
+            _deckRing = new DeckRing();
+            _deckRing.Add(deck);
+        }
+
         public Card FindCard(Deck deck)
         {
             var tempDeck = Deck.NewFromDeck(deck);

@@ -2,7 +2,7 @@ using System.Collections.Generic;
 
 namespace Cards
 {
-    public class DeckRing
+    public sealed class DeckRing
     {
         private readonly List<Card> _cards = new List<Card>();
 
@@ -19,7 +19,7 @@ namespace Cards
 
         public bool NextIs(int idx, Card card)
         {
-            return Next(idx) == card;
+            return Equals(Next(idx), card);
         }
 
         public Card Next(int idx)

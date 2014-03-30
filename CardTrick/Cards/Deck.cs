@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using Cards.Manipulations;
+using System.Text;
 
 namespace Cards
 {
@@ -91,6 +92,21 @@ namespace Cards
             foreach (var c in _cards)
                 if (Equals(card, c)) return true;
             return false;
+        }
+
+        public string Serialize()
+        {
+            var sb = new StringBuilder();
+            foreach (var card in _cards)
+            {
+                if (card == null)
+                {
+                    sb.Append("??,");
+                    continue;
+                }
+                sb.Append(card.ToString() + ",");
+            }
+            return sb.ToString();
         }
     }
 }
