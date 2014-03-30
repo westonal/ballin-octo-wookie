@@ -26,5 +26,10 @@ namespace Cards
         {
             return _cards[(idx + 1)%_cards.Count];
         }
+
+        internal Card OfIndex(int _idx)
+        {
+            return Next(_idx - 1);
+        }
     }
 }

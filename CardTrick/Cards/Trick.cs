@@ -42,13 +42,21 @@ namespace Cards
                         return pointer.Expected();
                     }
                 }
-                if (_pointers.Count < 2)
+                if (_pointers.Count < 4)
                 {
                     CreatePointer(c);
                     continue;
                 }
                 return c;
             }
+            return FirstPointerWithNoAdvances();
+        }
+
+        private Card FirstPointerWithNoAdvances()
+        {
+            foreach (var pointer in _pointers)
+                if (pointer.Advances() == 0)
+                    return pointer.Current();
             return null;
         }
 
