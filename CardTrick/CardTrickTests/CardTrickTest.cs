@@ -238,7 +238,7 @@ namespace CardTrickTests
             deck.Manipulate(new Cut(random.Next(2, 50)));
             deck.Manipulate(new Cut(random.Next(2, 50)));
             deck.Manipulate(new Cut(random.Next(2, 50)));
-            deck.Manipulate(new RiffleShuffle());
+            deck.Manipulate(new NonPerfectRiffleShuffle(random));
             var newDeck = deck.Serialize();
             var deck2 = Deck.NewEmptyDeck();
             deck.Manipulate(new Cut(26, deck2));
