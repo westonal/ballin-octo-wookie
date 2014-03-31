@@ -4,36 +4,30 @@
     ViewBag.Title = "Cards";
 }
 
-<h2>@ViewBag.Title</h2>
+@using (Html.BeginForm())
+{
+    <fieldset>
+        <legend>@ViewBag.Title</legend>
+        @Html.TextArea("cards", new { id = "typeHere" })
 
-<div id="cards">
-    <img src="~/Content/classic-cards/1.png" />
-</div>
+        <input type="submit"/>
+    </fieldset>
+}
 
-<textarea id="typeHere"></textarea>
-
-<button id="btn1">Press</button>
+<div id="cards" />
 
 <script language="javascript">
-    function eval() {
-        document.getElementById("cards").innerHTML += "<img src=\"/Content/classic-cards/1.png\" />";
-    }
+    var uri = '../api/cardstoimages/';
 
-    var uri = '../api/cardstoimages';
-    
     function full_eval() {
-        //document.getElementById("cards").innerHTML += "<img src=\"/Content/classic-cards/2.png\" />";
-        $.getJSON(uri + '/' + $('#typeHere').val()).done(function (data) {
-            $('#cards').empty();
-            $.each(data, function (key, item) {
-                $('<img>', { src: "/Content/classic-cards/" + item }).appendTo($('#cards'));
+        $.getJSON(uri + $('#typeHere').val()).done(function(data) {
+            var cards = $('#cards');
+            cards.empty();
+            $.each(data, function(key, item) {
+                $('<img>', { src: "/Content/classic-cards/" + item }).appendTo(cards);
             });
         });
     }
 
-    document.getElementById("btn1").onclick = eval;
-
     document.getElementById("typeHere").onkeyup = full_eval;
-
-    //$("#typeHere").change(function() { full_eval(); });
 </script>

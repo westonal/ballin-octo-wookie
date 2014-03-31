@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.Mvc;
+﻿using System.Web.Mvc;
 
 namespace CardTrick.Controllers
 {
@@ -12,5 +8,16 @@ namespace CardTrick.Controllers
         {
             return View();
         }
-	}
+
+        [HttpPost]
+        public ActionResult Index(string cards)
+        {
+            return RedirectToAction("SubmitTrick");
+        }
+
+        public ActionResult SubmitTrick(string cards)
+        {
+            return View();
+        }
+    }
 }
