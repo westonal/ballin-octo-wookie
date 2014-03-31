@@ -1,0 +1,12 @@
+﻿@model CardTrick.Models.TrickResult
+
+@{
+    ViewBag.Title = "Your card is";
+}
+
+<h2>@ViewBag.Title</h2>
+
+@{
+    var img = "/Content/classic-cards/" + Model.CardImage;
+    <img src=@img />
+}

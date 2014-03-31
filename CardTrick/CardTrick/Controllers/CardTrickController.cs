@@ -1,4 +1,5 @@
 ﻿using System.Web.Mvc;
+using CardTrick.Models;
 
 namespace CardTrick.Controllers
 {
@@ -12,12 +13,12 @@ namespace CardTrick.Controllers
         [HttpPost]
         public ActionResult Index(string cards)
         {
-            return RedirectToAction("SubmitTrick");
+            return RedirectToAction("YourCardIs", new {card = "AH"});
         }
 
-        public ActionResult SubmitTrick(string cards)
+        public ActionResult YourCardIs(string card)
         {
-            return View();
+            return View(new TrickResult {CardImage = card + ".png"});
         }
     }
 }
