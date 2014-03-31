@@ -1,9 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net;
-using System.Net.Http;
+﻿using System.Collections.Generic;
 using System.Web.Http;
+using Cards;
 
 namespace CardTrick.Controllers
 {
@@ -11,12 +8,22 @@ namespace CardTrick.Controllers
     {
         public IEnumerable<string> GetAll()
         {
-            return new string[] { "1.png", "2.png" };
+            return new string[] {};
         }
 
         public IEnumerable<string> GetSingle(string id)
         {
-            return new string[] { "1.png", "2.png", id };
+            var result = new List<string>();
+            var d = Deck.Load(id);
+            while (!d.IsEmpty())
+            {
+                var card = d.TakeCard();
+                if (card != null)
+                    result.Add(card + ".png");
+                else
+                    result.Add("53.png");
+            }
+            return result.ToArray();
         }
     }
 }

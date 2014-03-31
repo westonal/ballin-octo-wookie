@@ -23,7 +23,8 @@
     
     function full_eval() {
         //document.getElementById("cards").innerHTML += "<img src=\"/Content/classic-cards/2.png\" />";
-        $.getJSON(uri).done(function(data) {
+        $.getJSON(uri + '/' + $('#typeHere').val()).done(function (data) {
+            $('#cards').empty();
             $.each(data, function (key, item) {
                 $('<img>', { src: "/Content/classic-cards/" + item }).appendTo($('#cards'));
             });
@@ -32,7 +33,7 @@
 
     document.getElementById("btn1").onclick = eval;
 
-    document.getElementById("typeHere").onkeydown = full_eval;
+    document.getElementById("typeHere").onkeyup = full_eval;
 
     //$("#typeHere").change(function() { full_eval(); });
 </script>
