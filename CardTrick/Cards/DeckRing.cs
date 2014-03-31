@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Diagnostics;
 
 namespace Cards
 {
@@ -24,7 +25,7 @@ namespace Cards
 
         public Card Next(int idx)
         {
-            return _cards[(idx + 1)%_cards.Count];
+            return _cards[(idx + 1 + _cards.Count) % _cards.Count];
         }
 
         internal Card OfIndex(int _idx)

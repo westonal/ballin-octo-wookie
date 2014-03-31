@@ -87,7 +87,7 @@ namespace Cards
             return deck;
         }
 
-        private bool Contains(Card card)
+        public bool Contains(Card card)
         {
             foreach (var c in _cards)
                 if (Equals(card, c)) return true;
@@ -107,6 +107,20 @@ namespace Cards
                 sb.Append(card.ToString() + ",");
             }
             return sb.ToString();
+        }
+
+        internal Deck Subtract(Deck deck)
+        {
+            var deckCopy = Deck.NewFromDeck(this);
+            foreach(var c in deck._cards)
+               deckCopy.Remove(c);
+            return deckCopy;
+        }
+
+        private void Remove(Card card)
+        {
+            foreach (var c in _cards.ToArray())
+                if (Equals(card, c)) _cards.Remove(c);
         }
     }
 }

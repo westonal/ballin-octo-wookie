@@ -75,6 +75,19 @@ namespace CardTrickTests
         }
 
         [TestMethod]
+        public void Can_perform_many_times_using_method()
+        {
+            for (int seed = 1; seed <= 2048; seed++)
+            {
+                //setup
+                var deck = new Deck();
+                var model = new Model { ActualDeck = deck.Serialize(), DeckKnowledge = deck.Serialize() };
+                var random = new Random(seed);
+                PerformTrick(model, random, seed);
+            }
+        }
+
+        [TestMethod]
         public void Can_perform_trick_twice_with_learning()
         {
             for (int seed = 1; seed <= 40; seed++)
@@ -88,6 +101,43 @@ namespace CardTrickTests
                 for (int i = 1; i <= 2; i++)
                 {
                     model = PerformTrick(model, random, seed * 100 + i);
+                }
+            }
+        }
+
+        [TestMethod]
+        public void Can_perform_trick_twice_with_learning_using_perform()
+        {
+            for (int seed = 1; seed <= 512; seed++)
+            {
+                //setup
+                var deck = new Deck();
+                var model = new Model { ActualDeck = deck.Serialize(), DeckKnowledge = deck.Serialize() };
+
+                var random = new Random(seed);
+
+                for (int i = 1; i <= 2; i++)
+                {
+                    model = PerformTrickUsingPerform(model, random, seed * 100 + i);
+                }
+            }
+        }
+
+
+        [TestMethod]
+        public void Can_perform_trick_20_times_with_learning_using_perform()
+        {
+            for (int seed = 1; seed <= 512; seed++)
+            {
+                //setup
+                var deck = new Deck();
+                var model = new Model { ActualDeck = deck.Serialize(), DeckKnowledge = deck.Serialize() };
+
+                var random = new Random(seed);
+
+                for (int i = 1; i <= 20; i++)
+                {
+                    model = PerformTrickUsingPerform(model, random, seed * 100 + i);
                 }
             }
         }
@@ -150,7 +200,12 @@ namespace CardTrickTests
             var deck = Deck.Load(model.ActualDeck);
             Assert.AreEqual(deck.Serialize(), deck.Serialize());
             //trick steps
-            deck.Manipulate(new Cut(20));
+            deck.Manipulate(new Cut(random.Next(2, 50)));
+            deck.Manipulate(new Cut(random.Next(2, 50)));
+            deck.Manipulate(new Cut(random.Next(2, 50)));
+            deck.Manipulate(new Cut(random.Next(2, 50)));
+            deck.Manipulate(new Cut(random.Next(2, 50)));
+            deck.Manipulate(new Cut(random.Next(2, 50)));
             deck.Manipulate(new RiffleShuffle());
             var newDeck = deck.Serialize();
             var deck2 = Deck.NewEmptyDeck();
@@ -159,13 +214,44 @@ namespace CardTrickTests
             Assert.AreEqual(26, deck.Count());
             Assert.AreEqual(26, deck2.Count());
 
-            var card = deck.TakeCard(random.Next(3, 23));
-            deck2.InsertCard(card, random.Next(3, 23));
+            var card = deck.TakeCard(random.Next(2, 24));
+            deck2.InsertCard(card, random.Next(2, 24));
 
             Assert.AreEqual(card, trick.FindCard(deck), "Run " + run);
             Assert.AreEqual(card, trick2.FindCard(deck2), "Run " + run);
 
             return new Model { ActualDeck = newDeck, DeckKnowledge = deck.Serialize() + model.DeckKnowledge };
+        }
+
+        private Model PerformTrickUsingPerform(Model model, Random random, int run)
+        {
+            var deck = Deck.Load(model.ActualDeck);
+            Assert.AreEqual(deck.Serialize(), deck.Serialize());
+            //trick steps
+            deck.Manipulate(new Cut(random.Next(2, 50)));
+            deck.Manipulate(new Cut(random.Next(2, 50)));
+            deck.Manipulate(new Cut(random.Next(2, 50)));
+            deck.Manipulate(new Cut(random.Next(2, 50)));
+            deck.Manipulate(new Cut(random.Next(2, 50)));
+            deck.Manipulate(new Cut(random.Next(2, 50)));
+            deck.Manipulate(new RiffleShuffle());
+            var newDeck = deck.Serialize();
+            var deck2 = Deck.NewEmptyDeck();
+            deck.Manipulate(new Cut(26, deck2));
+
+            Assert.AreEqual(26, deck.Count());
+            Assert.AreEqual(26, deck2.Count());
+
+            var card = deck.TakeCard(random.Next(2, 24));
+            deck2.InsertCard(card, random.Next(2, 24));
+
+            var deckToReturn = random.Next(0, 1) == 0 ? deck : deck2;
+
+            var result = Trick.Perform(model.ActualDeck, deckToReturn.Serialize());
+
+            Assert.AreEqual(card, result.Card, "Run " + run);
+
+            return new Model { ActualDeck = newDeck, DeckKnowledge = result.NewKnowledge };
         }
     }
 }

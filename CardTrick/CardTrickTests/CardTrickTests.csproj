@@ -54,6 +54,7 @@
     <Compile Include="CardTest.cs" />
     <Compile Include="CardTrickTest.cs" />
     <Compile Include="DeckTest.cs" />
+    <Compile Include="FullTrickTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
