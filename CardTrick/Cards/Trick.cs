@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Linq;
 
 namespace Cards
 {
@@ -25,13 +26,19 @@ namespace Cards
             while (!tempDeck.IsEmpty())
             {
                 var c = tempDeck.TakeCard();
+                var seenExpected = false;
                 foreach (var pointer in _pointers)
                 {
                     if (pointer.IsExpected(c))
                     {
                         pointer.MoveOn();
+                        seenExpected = true;
+                        break;
                     }
-                    else
+                }
+                if (seenExpected) continue;
+                foreach (var pointer in _pointers)
+                {
                     {
                         if (pointer.IsExpected(c, 1))
                         {
@@ -40,17 +47,13 @@ namespace Cards
                     }
                 }
                 CreatePointer(c);
-                continue;
             }
-            return FirstPointerWithNoAdvances();
+            return PointerWithNoAdvances();
         }
 
-        private Card FirstPointerWithNoAdvances()
+        private Card PointerWithNoAdvances()
         {
-            foreach (var pointer in _pointers)
-                if (pointer.Advances() == 0)
-                    return pointer.Current();
-            return null;
+            return _pointers.Where(p => p.Advances() == 0).Select(p => p.Current()).Single();
         }
 
         private void CreatePointer(Card card)
