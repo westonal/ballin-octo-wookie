@@ -1,0 +1,13 @@
+﻿@model dynamic
+
+@{
+    ViewBag.Title = "Choose Card";
+}
+
+<h2>@ViewBag.Title</h2>
+
+<h3>
+    Take a card from around the middle of one pile, look at it, remember it, and place it in to around the middle of the other pile.
+</h3>
+
+@Html.ActionLink("Next >>", "Index", null, new { @class = "btn btn-primary btn-large" })

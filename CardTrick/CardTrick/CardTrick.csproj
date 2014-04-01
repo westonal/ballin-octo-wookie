@@ -132,6 +132,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\CardsModel.cs" />
     <Compile Include="Models\TrickResult.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -210,6 +211,8 @@
     <Content Include="Content\Site.css" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
+    <None Include="Properties\PublishProfiles\alanssiteoftheweek - FTP.pubxml" />
+    <None Include="Properties\PublishProfiles\alanssiteoftheweek - Web Deploy.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
@@ -234,6 +237,12 @@
     <Content Include="Scripts\jquery-1.10.2.min.map" />
     <Content Include="Views\CardTrick\Index.cshtml" />
     <Content Include="Views\CardTrick\YourCardIs.cshtml" />
+    <Content Include="Views\CardTrick\Start.cshtml" />
+    <Content Include="Views\CardTrick\Cut.cshtml" />
+    <Content Include="Views\CardTrick\Riffle.cshtml" />
+    <Content Include="Views\CardTrick\Split.cshtml" />
+    <Content Include="Views\CardTrick\MoveCard.cshtml" />
+    <Content Include="Views\CardTrick\Prime.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

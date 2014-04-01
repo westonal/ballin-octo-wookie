@@ -1,0 +1,13 @@
+﻿@model dynamic
+
+@{
+    ViewBag.Title = "Cut";
+}
+
+<h2>@ViewBag.Title</h2>
+
+<h3>
+    Split the deck anywhere, and put the bottom on the top.
+</h3>
+
+@Html.ActionLink("Next >>", "Riffle", null, new { @class = "btn btn-primary btn-large" })

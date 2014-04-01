@@ -1,0 +1,13 @@
+﻿@model dynamic
+
+@{
+    ViewBag.Title = "Split the deck";
+}
+
+<h2>@ViewBag.Title</h2>
+
+<h3>
+    Split the deck in to two roughly equal piles.
+</h3>
+
+@Html.ActionLink("Next >>", "MoveCard", null, new { @class = "btn btn-primary btn-large" })

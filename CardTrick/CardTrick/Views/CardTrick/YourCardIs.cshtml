@@ -6,7 +6,11 @@
 
 <h2>@ViewBag.Title</h2>
 
-@{
-    var img = "/Content/classic-cards/" + Model.CardImage;
-    <img src=@img />
-}
+<div>
+    @{
+        var img = "/Content/classic-cards/" + Model.CardImage;
+        <img src=@img />
+    }
+</div>
+
+@Html.ActionLink("Go again >>", "Start", null, new { @class = "btn btn-primary btn-large" })

@@ -1,6 +1,6 @@
-﻿using System.Collections.Generic;
+﻿using Cards;
+using System.Collections.Generic;
 using System.Web.Http;
-using Cards;
 
 namespace CardTrick.Controllers
 {

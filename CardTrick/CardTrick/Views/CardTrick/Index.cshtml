@@ -1,18 +1,38 @@
-﻿@model dynamic
+﻿@model CardTrick.Models.CardsModel
 
 @{
     ViewBag.Title = "Cards";
 }
 
-@using (Html.BeginForm())
-{
-    <fieldset>
-        <legend>@ViewBag.Title</legend>
-        @Html.TextArea("cards", new { id = "typeHere" })
+<h2>@ViewBag.Title</h2>
 
-        <input type="submit"/>
-    </fieldset>
-}
+<h3>
+    Choose either pile, and enter it here starting with the top card.
+</h3>
+
+<div>
+    Use letters A/1,2-9,T/10,J,Q,K for the values and S,C,H,D for the suits. Spaces optional.
+</div>
+
+<div>
+    @using (Html.BeginForm())
+    {
+        <fieldset>
+            <legend>@ViewBag.Title</legend>
+            <div>
+                @Html.TextAreaFor(model => model.Cards, new {id = "typeHere"})
+            </div>
+            <div>
+                @Html.ValidationSummary()
+            </div>
+            <div>
+                <input type="submit" class="btn btn-primary btn-large" value="Tell me my card >>" />
+            </div>
+        </fieldset>
+    }
+</div>
+
+<hr/>
 
 <div id="cards" />
 

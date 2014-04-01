@@ -1,0 +1,13 @@
+﻿@model dynamic
+
+@{
+    ViewBag.Title = "Riffle Shuffle";
+}
+
+<h2>@ViewBag.Title</h2>
+
+<h3>
+    Split the deck in the middle, and shuffle the two halfs together using a riffle shuffle action.
+</h3>
+
+@Html.ActionLink("Next >>", "Split", null, new { @class = "btn btn-primary btn-large" })

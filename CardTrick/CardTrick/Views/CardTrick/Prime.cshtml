@@ -1,0 +1,33 @@
+﻿@model CardTrick.Models.CardsModel
+
+@{
+    ViewBag.Title = "Prime";
+}
+
+@using (Html.BeginForm())
+{
+    <fieldset>
+        <legend>@ViewBag.Title</legend>
+        @Html.TextAreaFor(model => model.Cards, new { id = "typeHere" })
+
+        <input type="submit" />
+    </fieldset>
+}
+
+<div id="cards" />
+
+<script language="javascript">
+    var uri = '../api/cardstoimages/';
+
+    function full_eval() {
+        $.getJSON(uri + $('#typeHere').val()).done(function (data) {
+            var cards = $('#cards');
+            cards.empty();
+            $.each(data, function (key, item) {
+                $('<img>', { src: "/Content/classic-cards/" + item }).appendTo(cards);
+            });
+        });
+    }
+
+    document.getElementById("typeHere").onkeyup = full_eval;
+</script>
