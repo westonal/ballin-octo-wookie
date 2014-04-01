@@ -17,8 +17,6 @@ namespace Cards
         public Trick(string deckString)
         {
             var deck = Deck.Load(deckString);
-            //Debug.Assert(deck.Count() == 52);
-            Debug.Assert(!deck._cards.Any(c => c == null));
             _deckRing = new DeckRing();
             _deckRing.Add(deck);
         }
@@ -72,7 +70,7 @@ namespace Cards
             var result = new TrickResult { Card = card };
             if (halfOfDeck.Contains(card))
             {
-                result.NewKnowledge = halfAfterTrick + deckKnowledge;
+                result.NewKnowledge = Deck.Load(halfAfterTrick + deckKnowledge).Serialize();
             }
             else
             {

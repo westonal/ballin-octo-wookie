@@ -10,7 +10,9 @@ namespace CardTrick.Controllers
     {
         public string Cards
         {
-            get { return HttpContext.Session["cards"] as string; }
+            get { return HttpContext.Session["cards"] as string ??
+                "TC,3S,KH,7H,6C,QH,JD,TD,5S,7D,KD,7C,2S,8C,JH,2D,6D,AH,8H,4S,TS,4D,KC,QD,9H,8S,8D,5D,2C,QC,3D,3C,AS,9D,4C,6H,4H,5C,TH,JC,AC,9C,QS,7S,5H,6S,KS,9S,2H,3H,AD,JS,";
+            }
             set { HttpContext.Session["cards"] = value; }
         }
 
